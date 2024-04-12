@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:task/controller/converter_mode_controller.dart';
+import 'package:task/screen/singleConvert_Screen.dart';
+import 'package:task/utils/my_color.dart';
 import 'package:task/utils/my_images.dart';
 import 'package:task/utils/my_style.dart';
 
@@ -15,6 +18,7 @@ class SelectmodeScreen extends StatefulWidget {
 
 class _SelectmodeScreenState extends State<SelectmodeScreen> {
   @override
+  final con = Get.put(ConverterModeController());
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -31,24 +35,27 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
               children: [
                 ///Single Converter
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () => con.setMode(1),
                   child: Column(
                     children: [
-                      Container(
-                        height: 133,
-                        width: 192,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: const Color(0xffD7D7D7)),
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(MyImages.arrow),
-                        ),
-                      ),
+                      Obx(() => Container(
+                            height: 133,
+                            width: 192,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(color: con.mode.value == 1 ? MyColor.primaryColor : const Color(0xffD7D7D7)),
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(MyImages.arrow),
+                            ),
+                          )),
                       const SizedBox(height: 15),
-                      Text(
-                        'Single converter',
-                        style: 20.monserrat500,
+                      Hero(
+                        tag: 'animate',
+                        child: Text(
+                          'Single converter',
+                          style: 20.monserrat500,
+                        ),
                       )
                     ],
                   ),
@@ -62,7 +69,7 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: InkWell(
-                onTap: () {},
+                onTap: con.onGetStart,
                 child: Container(
                   height: 54,
                   width: Get.width,
