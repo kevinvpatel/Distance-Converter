@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:task/screen/selectMode_Screen.dart';
 import 'package:task/utils/my_images.dart';
 import 'package:task/utils/my_style.dart';
 
@@ -15,6 +18,12 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        return Get.to(() => const SelectmodeScreen());
+      },
+    );
   }
 
   @override
