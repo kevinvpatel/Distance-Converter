@@ -33,6 +33,33 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center, 
               children: [
+                ///Universal Converter
+                GestureDetector(
+                  onTap: () => con.setMode(2),
+                  child: Column(
+                    children: [
+                      Obx(() => Container(
+                            height: 133,
+                            width: 192,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                border: Border.all(color: con.mode.value == 2 ? MyColor.primaryColor : const Color(0xffD7D7D7))),
+                            child: Center(
+                              child: Image.asset(MyImages.uMode, scale: 2),
+                            ),
+                          )),
+                      const SizedBox(height: 15),
+                      Hero(
+                        tag: 'animate universal',
+                        child: Text(
+                          'Universal converter',
+                          style: 20.monserrat500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 43),
                 ///Single Converter
                 GestureDetector(
                   onTap: () => con.setMode(1),
@@ -51,7 +78,7 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
                           )),
                       const SizedBox(height: 15),
                       Hero(
-                        tag: 'animate',
+                        tag: 'animate single',
                         child: Text(
                           'Single converter',
                           style: 20.monserrat500,

@@ -24,7 +24,7 @@ class _SingleconvertScreenState extends State<SingleconvertScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Hero(
-          tag: 'animate',
+          tag: 'animate single',
           child: Text(
             'Single converter',
             style: 20.monserrat600,

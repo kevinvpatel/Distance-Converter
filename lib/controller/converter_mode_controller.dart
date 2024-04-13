@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:task/screen/singleConvert_Screen.dart';
+import 'package:task/screen/universal_convert_screen.dart';
 
 class ConverterModeController extends GetxController {
   var mode = 1.obs;
@@ -9,6 +10,10 @@ class ConverterModeController extends GetxController {
   }
 
   void onGetStart() {
-    Get.to(() => const SingleconvertScreen());
+    if (mode.value == 1) {
+      Get.to(() => const SingleconvertScreen());
+    } else {
+      Get.to(() => UniversalConvertScreen());
+    }
   }
 }
