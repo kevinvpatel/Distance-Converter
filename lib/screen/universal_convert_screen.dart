@@ -58,6 +58,7 @@ class _UniversalConvertScreenState extends State<UniversalConvertScreen> {
                       decoration: const InputDecoration(border: InputBorder.none, hintText: "00"),
                       onChanged: (value) {
                         con.inputValue = double.tryParse(value) ?? 0.0;
+                        con.convert();
                         setState(() {});
                       },
                     )),
@@ -84,6 +85,8 @@ class _UniversalConvertScreenState extends State<UniversalConvertScreen> {
                                         onTap: () {
                                           // setState(() {
                                           con.toUnit.value = con.fromtext[index];
+                                          con.convert();
+                                          con.addList();
                                           Get.back();
                                           // });
                                         },
@@ -163,7 +166,7 @@ class _UniversalConvertScreenState extends State<UniversalConvertScreen> {
           ),
           child: Text(
             // con.convertValue(unit ?? "").toString(),
-            '00',
+            '${numberToShorthand(double.parse(con.convertValue(unit ?? "").toStringAsFixed(2)))}',
             style: 14.monserrat600.copyWith(color: Colors.black),
           ),
         ),
