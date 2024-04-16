@@ -30,7 +30,15 @@ class SingleController extends GetxController {
       case 'Mile':
         valueInMeter = inputValue * 1609.34;
         break;
-
+      case 'Yard':
+        valueInMeter = inputValue * 0.9144;
+        break;
+      case 'Millimeter':
+        valueInMeter = inputValue / 1000.0;
+        break;
+      case 'Nautical mile':
+        valueInMeter = inputValue * 1852.0;
+        break;
       default:
         valueInMeter = inputValue;
         break;
@@ -39,6 +47,9 @@ class SingleController extends GetxController {
     switch (toUnit) {
       case 'Meter':
         convertedValue = valueInMeter;
+        break;
+      case 'Mile':
+        convertedValue = valueInMeter / 1609.34;
         break;
       case 'Centimeter':
         convertedValue = valueInMeter * 100.0;
@@ -52,8 +63,14 @@ class SingleController extends GetxController {
       case 'Inch':
         convertedValue = valueInMeter / 0.0254;
         break;
-      case 'Mile':
-        convertedValue = valueInMeter / 1609.34;
+      case 'Yard':
+        convertedValue = valueInMeter * 0.9144;
+        break;
+      case 'Millimeter':
+        convertedValue = valueInMeter / 1000.0;
+        break;
+      case 'Nautical mile':
+        convertedValue = valueInMeter * 1852.0;
         break;
       default:
         convertedValue = valueInMeter;
@@ -61,6 +78,6 @@ class SingleController extends GetxController {
     }
   }
 
-  List fromtext = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile'];
-  List toist = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile'];
+  List fromtext = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile', 'Yard', 'Millimeter', 'Nautical mile'];
+  List toist = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile', 'Yard', 'Millimeter', 'Nautical mile'];
 }

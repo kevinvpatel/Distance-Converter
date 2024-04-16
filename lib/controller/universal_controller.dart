@@ -38,13 +38,23 @@ class UniversalController extends GetxController {
       case 'Inch':
         valueInMeter = inputValue * 0.0254;
         break;
+      case 'Mile':
+        valueInMeter = inputValue * 1609.34;
+        break;
       case 'Yard':
         valueInMeter = inputValue * 0.9144;
+        break;
+      case 'Millimeter':
+        valueInMeter = inputValue / 1000.0;
+        break;
+      case 'Nautical mile':
+        valueInMeter = inputValue * 1852.0;
         break;
       default:
         valueInMeter = inputValue;
         break;
     }
+    // Convert meter to desired unit
 
     convertedValue = valueInMeter;
     log(convertedValue.toString());
@@ -84,16 +94,25 @@ class UniversalController extends GetxController {
       case 'Inch':
         return convertedValue / 0.0254;
 
+      case 'Mile':
+        return convertedValue / 1609.34;
+
       case 'Yard':
         return convertedValue / 0.9144;
+
+      case 'Millimeter':
+        return convertedValue * 1000.0;
+
+      case 'Nautical mile':
+        return convertedValue / 1852.0;
 
       default:
         return convertedValue;
     }
   }
 
-  List fromtext = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Yard'];
-  List toist = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Yard'];
+  List fromtext = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile', 'Yard', 'Millimeter', 'Nautical mile'];
+  List toist = ['Meter', 'Centimeter', 'Kilometer', 'Foot', 'Inch', 'Mile', 'Yard', 'Millimeter', 'Nautical mile'];
 
   RxList<UCModel> ucList = <UCModel>[].obs;
 

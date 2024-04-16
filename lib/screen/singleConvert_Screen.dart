@@ -23,13 +23,7 @@ class _SingleconvertScreenState extends State<SingleconvertScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Hero(
-          tag: 'animate single',
-          child: Text(
-            'Single converter',
-            style: 20.monserrat600,
-          ),
-        ),
+        title: const Text('SINGLE CONVERTER'),
         titleTextStyle: 14.monserrat600,
       ),
       body: Padding(
@@ -38,62 +32,73 @@ class _SingleconvertScreenState extends State<SingleconvertScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 30),
-            TextFiedWidget(
-              controlle: con.inputController,
-              title: con.fromUnit,
-              color: MyColor.textfiledC1,
-              tcolor: MyColor.black,
-              Tcolor: MyColor.black,
-              onChanged: (value) {
-                con.inputValue = double.tryParse(value) ?? 0.0;
-                con.convert();
-                setState(() {});
-              },
-              onTap: () {
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  context: context,
-                  builder: (context) {
-                    return Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                        margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) => const Divider(),
-                          shrinkWrap: true,
-                          itemCount: con.fromtext.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    con.fromUnit = con.fromtext[index];
-                                    con.convert();
-                                    Get.back();
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: Get.width,
-                                  child: Center(
-                                    child: Text(
-                                      '${con.fromtext[index]}',
-                                      style: 17.monserrat400,
+            Obx(() => TextFiedWidget(
+                  border: con.isValid.value ? Border.all(color: Colors.red) : null,
+                  controlle: con.inputController,
+                  title: con.fromUnit,
+                  color: MyColor.textfiledC1,
+                  tcolor: MyColor.black,
+                  Tcolor: MyColor.black,
+                  onChanged: (value) {
+                    setState(() {
+                      if (value.length > 9) {
+                        con.isValid.value = true;
+                      } else {
+                        con.inputValue = double.tryParse(value) ?? 0.0;
+                        con.convert();
+                        con.isValid.value = false;
+                      }
+                    });
+                  },
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                            margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                            child: ListView.separated(
+                              separatorBuilder: (context, index) => const Divider(),
+                              shrinkWrap: true,
+                              itemCount: con.fromtext.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        con.fromUnit = con.fromtext[index];
+                                        con.convert();
+                                        Get.back();
+                                      });
+                                    },
+                                    child: SizedBox(
+                                      width: Get.width,
+                                      child: Center(
+                                        child: Text(
+                                          '${con.fromtext[index]}',
+                                          style: 17.monserrat400,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        ));
+                                );
+                              },
+                            ));
+                      },
+                    );
                   },
-                );
-              },
-            ),
-            const SizedBox(height: 15),
-            ///swap button
+                )),
+            const SizedBox(height: 5),
+            Obx(() => Text(
+                  con.isValid.value ? "Please add less than 9 digits" : "",
+                  style: 12.monserrat600.copyWith(color: Colors.red),
+                )),
+            const SizedBox(height: 0),
             InkWell(
                 onTap: () {
                   String m = con.fromUnit;
@@ -117,10 +122,7 @@ class _SingleconvertScreenState extends State<SingleconvertScreen> {
                   builder: (context) {
                     return Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.white
-                        ),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                         margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                         child: ListView.separated(

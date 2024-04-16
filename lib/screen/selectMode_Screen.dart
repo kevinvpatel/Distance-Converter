@@ -33,7 +33,6 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center, 
               children: [
-                ///Universal Converter
                 GestureDetector(
                   onTap: () => con.setMode(2),
                   child: Column(
@@ -49,18 +48,14 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
                             ),
                           )),
                       const SizedBox(height: 15),
-                      Hero(
-                        tag: 'animate universal',
-                        child: Text(
-                          'Universal converter',
-                          style: 20.monserrat500,
-                        ),
+                      Text(
+                        'Universal converter',
+                        style: 20.monserrat500,
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 43),
-                ///Single Converter
                 GestureDetector(
                   onTap: () => con.setMode(1),
                   child: Column(
@@ -77,12 +72,9 @@ class _SelectmodeScreenState extends State<SelectmodeScreen> {
                             ),
                           )),
                       const SizedBox(height: 15),
-                      Hero(
-                        tag: 'animate single',
-                        child: Text(
-                          'Single converter',
-                          style: 20.monserrat500,
-                        ),
+                      Text(
+                        'Single converter',
+                        style: 20.monserrat500,
                       )
                     ],
                   ),
